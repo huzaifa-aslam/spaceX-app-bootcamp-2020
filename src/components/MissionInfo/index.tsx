@@ -1,10 +1,19 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {MissionInfoList} from './MissionInfoList'
 import {useLaunchMissionInfoQuery} from './../../generated/graphql'
-export const MissionInfo = () => {
+
+
+
+export const MissionInfo = ({userName}:any) => {
+
+
+
+    const [myid,setMyid]=useState<any>(12)
+    // setMyid(userName)
+
     const { data, loading, error } = useLaunchMissionInfoQuery({
            variables: {
-              id:'10' // value for 'id'
+              id:myid.toString() // value for 'id'
            },
          });
 
@@ -15,8 +24,9 @@ export const MissionInfo = () => {
             return <h3>Error</h3>
         }
         console.log("MissionInfo",data)
+       // console.log("check",check)
 
     return (
-        <MissionInfoList data={data}/>
+        <MissionInfoList data={data} />
     )
 }
